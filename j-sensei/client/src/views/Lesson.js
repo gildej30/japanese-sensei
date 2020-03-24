@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {navigate} from '@reach/router';
 
-const Lesson = ({id, scoreUpdate}) => {
+const Lesson = ({id, userScores, scoreUpdate}) => {
 
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
@@ -69,6 +69,7 @@ const Lesson = ({id, scoreUpdate}) => {
         <div>
             {questionNumber < 3 ?
                 <div>
+                    <h1>{userScores[id-1].lessonName}</h1>
                     <form className="col-5 mx-auto" onSubmit={onSubmitHandler}>
                         <div className="form-group">
                             <label>{questions[id-1][questionNumber].q}</label>
@@ -78,6 +79,9 @@ const Lesson = ({id, scoreUpdate}) => {
                     </form>
                     <hr />
                     <h3>Score: {score}</h3>
+                    <div className="progress">
+                        <div className="progress-bar bg-success" style={{width: `${questionNumber/3*100}%`}} role="progressbar"></div>
+                    </div>
                 </div>
                 :
                 <div className="col-5 mx-auto">
