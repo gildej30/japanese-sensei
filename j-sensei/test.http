@@ -1,0 +1,12 @@
+POST http://localhost:8000/api/alphabet/new HTTP/1.1
+Content-Type: application/json
+
+{
+    "hiragana":"a",
+    "katakana":"d",
+    "romanji":"c"
+}
+
+###
+
+GET http://localhost:8000/api/alphabets HTTP/1.1
