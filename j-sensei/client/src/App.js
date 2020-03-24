@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import { Router } from '@reach/router';
 import Register from './views/Register';
