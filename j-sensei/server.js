@@ -11,5 +11,5 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}),
     express.urlencoded({extended:true})
 );
 require('./server/config/db.config');
-require('./server/routes/alphabet.routes')(app);
+require('./server/routes/hiragana.routes')(app);
 require('./server/routes/user.routes')(app);

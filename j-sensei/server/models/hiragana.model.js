@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const AlphabetSchema = mongoose.Schema({
+const HiraganaSchema = mongoose.Schema({
     hiragana:{
         type:String,
         required:[true, "Hiragana is required!"]
@@ -15,4 +15,4 @@ const AlphabetSchema = mongoose.Schema({
     }
 })
 
-module.exports.Alphabet = mongoose.model("Alphabet", AlphabetSchema);
+module.exports.Hiragana = mongoose.model("Hiragana", HiraganaSchema);
