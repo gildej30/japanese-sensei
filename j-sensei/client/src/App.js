@@ -44,7 +44,7 @@ function App() {
       lessonColor: "danger"
   },
   {
-      lessonName: "Hiragana 3",
+      lessonName: "Hiragana Quiz 1",
       highScore: 0,
       lessonColor: "danger"
   }
@@ -83,10 +83,8 @@ function App() {
         <hr />
         <Router>
           <Dashboard path='/' userScores={userScores}/>
-          <Lesson path='/lesson/:id' userScores={userScores} scoreUpdate={scoreUpdate}/>
+          <Lesson path='/lesson/:lesson' userScores={userScores} scoreUpdate={scoreUpdate}/>
       </Router>
-      
-      
     </div>
   );
 }

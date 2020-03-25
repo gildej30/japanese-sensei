@@ -1,18 +1,21 @@
 import React, {useState} from 'react';
 
 const MultipleChoice = ({dictionary, lesson, questionNumber, score, incrementQuestion, incrementScore}) => {
+
+    console.log("re-render");
+
+    // const shuffleArray = (array) => {
+    //     console.log("repeat in shuffle");
+    //     let newArray = [...array];
+    //     for (let i = newArray.length - 1; i > 0; i--) {
+    //         const j = Math.floor(Math.random() * (i + 1));
+    //         [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    //     }
+    //     return newArray;
+    // }
     
-    const shuffleArray = (array) => {
-        let newArray = [...array];
-        for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        }
-        return newArray;
-    }
-    
-    const[questions, setQuestions] = useState(shuffleArray(dictionary));
-    const[options, setOptions] = useState(shuffleArray(dictionary));
+    const[questions, setQuestions] = useState(dictionary);
+    const[options, setOptions] = useState(dictionary);
 
     const onClickHandler = e => {
         e.preventDefault();
@@ -21,7 +24,7 @@ const MultipleChoice = ({dictionary, lesson, questionNumber, score, incrementQue
             incrementScore();
         }
         incrementQuestion();
-        setOptions(shuffleArray(dictionary));
+        // setOptions(shuffleArray(dictionary));
     }
 
     return (

@@ -1,29 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {navigate} from '@reach/router';
 import MultipleChoice from '../components/MultipleChoice';
 import MatchGame from '../components/MatchGame';
-import Axios from 'axios';
 
-const Lesson = ({lesson, scoreUpdate, userScores}) => {
+const Quiz = ({id, scoreUpdate, userScores}) => {
 
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [questionType, setQuestionType] = useState(0);
-    const [dictionary, setDictionary] = useState(["a","e","i","o","u"]);
-    const [loaded, setLoaded] = useState([false]);
-    
-    // useEffect(() => {
-    //     Axios.get("http://localhost:8000/api/hiragana/dictionaries/" + (lesson-1))
-    //         .then(res => {
-    //             let temp = [];
-    //             for (let i = 0; i < res.data.length; i++) {
-    //                 temp.push(res.data[i].romanji);
-    //             }
-    //             setDictionary(temp)
-    //             setLoaded(true)
-    //         })
-    //         .catch(err => console.log(err))
-    // }, [lesson])
+
+    const dictionary = ["a", "e", "i", "o" ,"u"];
 
     const incrementQuestion = () => {
         setQuestionNumber(questionNumber + 1);
@@ -36,7 +22,7 @@ const Lesson = ({lesson, scoreUpdate, userScores}) => {
     
     const dashboardReturn = e => {
         e.preventDefault();
-        scoreUpdate(lesson, score);
+        scoreUpdate(id, score);
         navigate("/");
     }
 
@@ -45,14 +31,14 @@ const Lesson = ({lesson, scoreUpdate, userScores}) => {
             {questionNumber < 5 ?
                 questionType === 0 ? 
                     <MultipleChoice dictionary={dictionary}
-                    lesson={userScores[lesson-1].lessonName}
+                    lesson={userScores[id-1].lessonName}
                     questionNumber={questionNumber}
                     score={score}
                     incrementQuestion={incrementQuestion}
                     incrementScore={incrementScore} />
                     : 
                     <MatchGame dictionary={dictionary}
-                    lesson={userScores[lesson-1].lessonName}
+                    lesson={userScores[id-1].lessonName}
                     questionNumber={questionNumber}
                     score={score}
                     incrementQuestion={incrementQuestion}
@@ -68,4 +54,4 @@ const Lesson = ({lesson, scoreUpdate, userScores}) => {
 
 }
 
-export default Lesson;
+export default Quiz;
