@@ -55,10 +55,10 @@ function App() {
     let highScore = Math.max(score, userScores[lesson-1].highScore);
     let lessonName = userScores[lesson-1].lessonName;
   
-    if(highScore <= 1) {
+    if(highScore <= 2) {
       newColor = "danger"
     }
-    else if(highScore < 3) {
+    else if(highScore < 5) {
       newColor = "warning"
     }
     else {
@@ -78,7 +78,7 @@ function App() {
     <div className="App">
         <nav className="navbar navbar-expand-lg navbar-light">
           <a className="navbar-brand mr-auto" href="#">J-Sensei!</a>
-          <span class="navbar-text">Welcome, TestUser!</span>
+          <span className="navbar-text">Welcome, TestUser!</span>
         </nav>
         <hr />
         <Router>
