@@ -18,13 +18,8 @@
     "bcrypt": "^4.0.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-<<<<<<< HEAD
-    "mongoose": "^5.9.6",
-    "unofficial-jisho-api": "^2.0.8"
-=======
-    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6"
->>>>>>> 8af164ab35a3e5515b5a3dd2004f6470b7ceeda5
   }
 }

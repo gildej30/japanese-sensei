@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-<<<<<<< HEAD
-import { Router } from '@reach/router'; 
-const JishoApi = require('unofficial-jisho-api');
-const jisho = new JishoApi();
-=======
 import { Router } from '@reach/router';
 import Register from './views/Register';
 import Main from './views/Main';
@@ -12,7 +7,7 @@ import Login from './views/Login';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from './views/Dashboard';
 import Lesson from './views/Lesson'; 
->>>>>>> 8af164ab35a3e5515b5a3dd2004f6470b7ceeda5
+
 
 function App() {
     const style = {
