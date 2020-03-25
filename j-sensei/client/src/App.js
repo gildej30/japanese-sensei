@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from './views/Dashboard';
 import Lesson from './views/Lesson'; 
 
+
 function App() {
     const style = {
     card: {
@@ -84,6 +85,8 @@ function App() {
           <Dashboard path='/' userScores={userScores}/>
           <Lesson path='/lesson/:id' userScores={userScores} scoreUpdate={scoreUpdate}/>
       </Router>
+
+      
     </div>
   );
 }
