@@ -10,8 +10,3 @@ mongoose.connect(`mongodb+srv://gildej30:${uri}@codingdojo-voxar.mongodb.net/tes
 })
     .then(() => console.log("Connected to database"))
     .catch(err => console.log("Connection failed.", err))
-
-// mongoose.connect("mongodb://localhost/jsensei_db", {
-//     useNewUrlParser:true,
-//     useUnifiedTopology:true
-// })

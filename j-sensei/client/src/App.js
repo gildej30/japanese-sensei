@@ -85,7 +85,7 @@ function App() {
           <Dashboard path='/' userScores={userScores}/>
           <Lesson path='/lesson/:id' userScores={userScores} scoreUpdate={scoreUpdate}/>
       </Router>
-
+      
       
     </div>
   );
