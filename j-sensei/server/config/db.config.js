@@ -1,10 +1,12 @@
 require('dotenv').config();
+const MongoClient = require("mongodb").MongoClient;
 
 const mongoose = require('mongoose');
     path = require('path'),
-    uri = process.env.PASS;
+    uri = process.env.PASS,
+    dbConnectionUrl = `mongodb+srv://gildej30:${uri}@codingdojo-voxar.mongodb.net/Alphabet?retryWrites=true&w=majority`
 
-mongoose.connect(`mongodb+srv://gildej30:${uri}@codingdojo-voxar.mongodb.net/test?retryWrites=true&w=majority`, {
+mongoose.connect(dbConnectionUrl, {
     useNewUrlParser:true, 
     useUnifiedTopology: true
 })
