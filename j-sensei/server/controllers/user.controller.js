@@ -17,6 +17,7 @@ module.exports = {
                                 res.cookie("usertoken", newJWT, {
                                         httpOnly: true
                                     })
+                                    .cookie("nickname", user.nickname, {httpOnly: true})
                                     .json({ msg: "success" });
                             } else {
                                 res.json({ msg: "Invalid email/password" });
@@ -38,6 +39,6 @@ module.exports = {
     },
 
     logout: (req, res) => {
-        res.clearCookie("usertoken").json({ msg: "Come back soon!" });
+        res.clearCookie("usertoken").clearCookie("nickname").json({ msg: "Come back soon!" });
     }
 }

@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {navigate} from '@reach/router';
 import MultipleChoice from '../components/MultipleChoice';
+import NavBar from '../components/NavBar';
 import MatchGame from '../components/MatchGame';
 
-const Lesson = ({id, scoreUpdate, userScores}) => {
+const Lesson = ({id, scoreUpdate, userScores, style}) => {
 
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
@@ -23,11 +24,12 @@ const Lesson = ({id, scoreUpdate, userScores}) => {
     const dashboardReturn = e => {
         e.preventDefault();
         scoreUpdate(id, score);
-        navigate("/");
+        navigate("/dashboard");
     }
 
     return (
         <div>
+            <NavBar style={style}/>
             {questionNumber < 5 ?
                 questionType === 0 ? 
                     <MultipleChoice dictionary={dictionary}

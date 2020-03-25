@@ -13,7 +13,7 @@ const LoginForm = ({style}) => {
         e.preventDefault();
         axios.post("http://localhost:8000/api/login", {email, password},{withCredentials:true})
             .then(res => {
-                res.data.msg === "success" ? navigate("/home") : setErrors(res.data);
+                res.data.msg === "success" ? navigate("/dashboard") : setErrors(res.data);
             })
             .catch(err => console.log(err))
     }
