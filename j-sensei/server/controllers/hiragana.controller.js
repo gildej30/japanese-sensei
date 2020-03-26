@@ -16,8 +16,16 @@ module.exports = {
         const lessonSets = [
             ["a", "e", "i", "o" ,"u"],
             ["ka", "ke", "ki", "ko" ,"ku"],
+            ["ka", "ke", "ki", "ko" ,"ku", "a", "e", "i", "o" ,"u"],
             ["sa", "se", "shi", "so" ,"su"],
-            ["ta", "te", "chi", "to" ,"tsu"]
+            ["ta", "te", "chi", "to" ,"tsu"],
+            ["sa", "se", "shi", "so" ,"su", "ta", "te", "chi", "to" ,"tsu"],
+            ["na", "ne", "ni", "no" ,"nu"],
+            ["ha", "he", "hi", "ho" ,"hu"],
+            ["na", "ne", "ni", "no" ,"nu", "ha", "he", "hi", "ho" ,"hu"],
+            ["a", "e", "i", "o" ,"u"],
+            ["ka", "ke", "ki", "ko" ,"ku"],
+            ["ka", "ke", "ki", "ko" ,"ku", "a", "e", "i", "o" ,"u"],
         ];
 
         Hiragana.find({ romanji: { $in: lessonSets[req.params.lesson] }})
