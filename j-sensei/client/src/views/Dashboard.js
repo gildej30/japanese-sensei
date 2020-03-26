@@ -13,7 +13,7 @@ const Dashboard = ({userScores, style, h}) => {
         Axios.get("http://localhost:8000/api/hiragana", { withCredentials: true })
             .then(res => {
                 setIsAuthorized(true);
-                setHiragana(res.data);
+                setHiragana(res.data.hiragana);
                 context.setVal(res.data.nickname);
             })
             .catch(err => navigate("/"))
