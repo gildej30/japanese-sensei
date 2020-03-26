@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import { Router } from '@reach/router';
 import Register from './views/Register';
@@ -6,10 +6,11 @@ import Login from './views/Login';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from './views/Dashboard';
 import Lesson from './views/Lesson';
-import NavBar from './components/NavBar';
+import MyContext from './contexts/MyContext';
 
 
 function App() {
+  const [val, setVal] = useState("");
   const style = {
     card: {
       borderRadius: '10px',
@@ -82,12 +83,14 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Login style={style} path="/" />
-        <Register style={style} path="/register" />
-        <Dashboard style={style} path='/dashboard' userScores={userScores} />
-        <Lesson style={style} path='/lesson/:id' userScores={userScores} scoreUpdate={scoreUpdate} />
-      </Router>
+      <MyContext.Provider value={{val, setVal}}>
+        <Router>
+          <Login style={style} path="/" />
+          <Register style={style} path="/register" />
+          <Dashboard style={style} path='/dashboard' userScores={userScores} />
+          <Lesson style={style} path='/lesson/:id' userScores={userScores} scoreUpdate={scoreUpdate} />
+        </Router>
+      </MyContext.Provider>
     </div>
   );
 }

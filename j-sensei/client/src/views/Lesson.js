@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {navigate} from '@reach/router';
 import MultipleChoice from '../components/MultipleChoice';
 import NavBar from '../components/NavBar';
 import MatchGame from '../components/MatchGame';
+import MyContext from '../contexts/MyContext';
 
 const Lesson = ({id, scoreUpdate, userScores, style}) => {
 
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [questionType, setQuestionType] = useState(0);
+    const context = useContext(MyContext);
 
     const dictionary = ["a", "e", "i", "o" ,"u"];
 
@@ -29,7 +31,7 @@ const Lesson = ({id, scoreUpdate, userScores, style}) => {
 
     return (
         <div>
-            <NavBar style={style}/>
+            <NavBar username={context.val} style={style}/>
             {questionNumber < 5 ?
                 questionType === 0 ? 
                     <MultipleChoice dictionary={dictionary}

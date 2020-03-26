@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from '@reach/router';
 import Logout from './Logout';
+import MyContext from '../contexts/MyContext';
 
 const NavBar = ({ style, username }) => {
+    const context = useContext(MyContext);
     return (
         <nav style={style.navbar} className="navbar navbar-expand-lg navbar-light">
             <Link className="navbar-brand mr-auto" to="/dashboard">J-Sensei!</Link>
