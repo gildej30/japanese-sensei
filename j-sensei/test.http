@@ -9,4 +9,4 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8000/api/alphabets HTTP/1.1
+GET http://localhost:8000/api/hiragana HTTP/1.1
