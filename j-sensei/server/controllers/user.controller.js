@@ -38,6 +38,6 @@ module.exports = {
     },
 
     logout: (req, res) => {
-        res.clearCookie("usertoken").clearCookie("nickname").json({ msg: "Come back soon!" });
+        res.clearCookie("usertoken").json({ msg: "Come back soon!" });
     }
 }
