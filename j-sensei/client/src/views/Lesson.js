@@ -1,15 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {navigate} from '@reach/router';
 import MultipleChoice from '../components/MultipleChoice';
+import NavBar from '../components/NavBar';
 import MatchGame from '../components/MatchGame';
+import MyContext from '../contexts/MyContext';
 import Axios from 'axios';
 
-const Lesson = ({lesson, scoreUpdate, userScores}) => {
+const Lesson = ({lesson, scoreUpdate, userScores, style}) => {
 
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [pick, setPick] = useState(0);
     const [questionType, setQuestionType] = useState(0);
+    const context = useContext(MyContext);
     const [dictionary, setDictionary] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
@@ -39,11 +42,12 @@ const Lesson = ({lesson, scoreUpdate, userScores}) => {
     const dashboardReturn = e => {
         e.preventDefault();
         scoreUpdate(lesson, score);
-        navigate("/");
+        navigate("/dashboard");
     }
 
     return (
         <div>
+            <NavBar username={context.val} style={style}/>
             {questionNumber < 10 ?
                 questionType === 0 && loaded ?
                     <MultipleChoice dictionary={dictionary}

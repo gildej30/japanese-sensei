@@ -30,6 +30,10 @@ const UserSchema = mongoose.Schema({
             validator: val => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/.test(val),
             message: "Password must include at least: 1 lowercase, 1 uppercase alphabetic characters; 1 special character"
         }
+    },
+    progress: {
+        type:Number,
+        default: 0
     }
 }, { timestamps: true });
 

@@ -13,7 +13,7 @@ module.exports = {
                         .then(passwordIsValid => {
                             if (passwordIsValid) {
                                 const secret = "3d9s4#@4lk@12r";
-                                const newJWT = jwt.sign({_id: user._id}, secret);
+                                const newJWT = jwt.sign({_id: user._id, nickname: user.nickname}, secret);
                                 res.cookie("usertoken", newJWT, {
                                         httpOnly: true
                                     })
@@ -38,6 +38,6 @@ module.exports = {
     },
 
     logout: (req, res) => {
-        res.clearCookie("usertoken").json({ msg: "Come back soon!" });
+        res.clearCookie("usertoken").clearCookie("nickname").json({ msg: "Come back soon!" });
     }
 }

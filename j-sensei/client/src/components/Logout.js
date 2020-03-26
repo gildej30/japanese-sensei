@@ -10,7 +10,7 @@ const Logout = () => {
     }
 
     return(
-        <button className="btn btn-primary" onClick={() => leave()}>Logout</button>
+        <Link className="dropdown-item" onClick={() => leave()} to="/logout">Logout</Link>
     )
 }
 

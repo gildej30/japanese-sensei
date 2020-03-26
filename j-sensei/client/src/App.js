@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import { Router } from '@reach/router';
 import Register from './views/Register';
-import Main from './views/Main';
 import Login from './views/Login';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from './views/Dashboard';
 import Lesson from './views/Lesson';
+import MyContext from './contexts/MyContext';
 import { UserData } from './data/UserData';
 
 
 function App() {
-    const style = {
+  const [val, setVal] = useState("");
+  const style = {
     card: {
       borderRadius: '10px',
       margin: '15px',
@@ -30,9 +31,12 @@ function App() {
       color: 'red',
       margin: '0px',
       padding: '0px'
+    },
+    navbar:{
+      paddingLeft: '20%',
+      paddingRight: '20%'
     }
   }
-
   const [userScores, setUserScores] = useState(UserData);
   
   const scoreUpdate = (lesson, score) => {
@@ -77,17 +81,18 @@ function App() {
     setUserScores([...userScores.slice(0,lessonNumber), newScore, ...userScores.slice(lessonNumber+1)]);
   }
 
+  const [isMounted, setIsMounted] = useState(false);
+
   return (
     <div className="App">
-        <nav className="navbar navbar-expand-lg navbar-light">
-          <a className="navbar-brand mr-auto" href="#">J-Sensei!</a>
-          <span className="navbar-text">Welcome, TestUser!</span>
-        </nav>
-        <hr />
+      <MyContext.Provider value={{val, setVal}}>
         <Router>
-          <Dashboard path='/' userScores={userScores}/>
-          <Lesson path='/lesson/:lesson' userScores={userScores} scoreUpdate={scoreUpdate}/>
-      </Router>
+          <Login style={style} path="/" />
+          <Register style={style} path="/register" />
+          <Dashboard style={style} path='/dashboard' userScores={userScores} />
+          <Lesson style={style} path='/lesson/:lesson' userScores={userScores} scoreUpdate={scoreUpdate}/>
+        </Router>
+      </MyContext.Provider>
     </div>
   );
 }

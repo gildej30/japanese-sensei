@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import {Link} from '@reach/router';
-import Audio from '../components/Audio';
+import React, {useState, useEffect, useContext} from 'react';
 import Axios from 'axios';
+import NavBar from '../components/NavBar';
+import {Link, navigate} from '@reach/router';
+import MyContext from '../contexts/MyContext';
+import Audio from '../components/Audio';
 
-const Dashboard = ({userScores, h}) => {
-
+const Dashboard = ({userScores, style, h}) => {
     const [hiragana, setHiragana] = useState([]);
-    
+    const context = useContext(MyContext);
+    const [isAuthorized, setIsAuthorized] = useState(false);
     useEffect(() => {
-        Axios.get("http://localhost:8000/api/hiragana/")
-            .then(res => setHiragana(res.data))
-    },[]) 
-
+        Axios.get("http://localhost:8000/api/hiragana", { withCredentials: true })
+            .then(res => {
+                setIsAuthorized(true);
+                setHiragana(res.data);
+                context.setVal(res.data.nickname);
+            })
+            .catch(err => navigate("/"))
+    }, [hiragana]);
     return (
+        isAuthorized && 
         <div>
             <div className="col-6 mx-auto justify-content-between" style={{backgroundImage: "url('/img/tokyo-tower.jpg'", backgroundSize: "100% 100%"}}>
                 {userScores.map((lesson, i) => 
