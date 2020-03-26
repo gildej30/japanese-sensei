@@ -1,44 +1,54 @@
 import React, {useState} from 'react';
+import Answer from './Answer';
 
-const MultipleChoice = ({dictionary, lesson, questionNumber, score, incrementQuestion, incrementScore}) => {
-    
-    const shuffleArray = (array) => {
-        let newArray = [...array];
-        for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        }
-        return newArray;
-    }
-    
-    const[questions, setQuestions] = useState(shuffleArray(dictionary));
-    const[options, setOptions] = useState(shuffleArray(dictionary));
+const MultipleChoice = ({dictionary, lessonName, questionNumber, score, incrementQuestion, incrementScore, alphabet, type, pick}) => {
+
+    const[questions, setQuestions] = useState(dictionary);
+    const[options, setOptions] = useState(dictionary);
+    const[answered, setAnswered] = useState(false);
+    const[correct, setCorrect] = useState(false);
 
     const onClickHandler = e => {
         e.preventDefault();
         e.target.blur();
-        if (e.target.value === questions[questionNumber]) {
+        if (e.target.value === questions[pick]) {
+            setCorrect(true);
+        }
+        setAnswered(true);
+    }
+    
+    const proceedClick = e => {
+        e.preventDefault();
+        if (correct) {
             incrementScore();
         }
+        setCorrect(false);
+        setAnswered(false);
         incrementQuestion();
-        setOptions(shuffleArray(dictionary));
     }
 
     return (
+        <div>
         <div className="col-5 mx-auto">   
-            <h1>{lesson}</h1>
-            <img src={"/img/Hiragana_"+questions[questionNumber]+".png"} alt="Hiragana" className="img-thumbnail"/>
-            <p className="my-2">What vowel does this hiragana represent?</p>
-            <div className="d-flex flex-row p-2 justify-content-between">
+            <h1>{lessonName}</h1>
+            {type==="lesson" && <img src={"/img/"+alphabet+"_"+questions[pick]+".png"} alt={alphabet} className="img-thumbnail" title={questions[pick]}/>}
+            {type==="quiz" && <img src={"/img/"+alphabet+"_"+questions[pick]+".png"} alt={alphabet} className="img-thumbnail"/>}
+            <p className="my-2">{`What syllable does this character represent?`}</p>
+            <div className="d-flex flex-row flex-wrap p-2 justify-content-between col-12 mx-auto">
                 {options.map((option, i) => 
-                <button key={i} type="button" className="btn btn-outline-success col-1 mx-2" value={option} onClick={onClickHandler}>{option}</button>)}
+                <button key={i} type="button" className="btn btn-outline-success col-2 mx-2 my-1" value={option} onClick={onClickHandler}>{option}</button>)}
             </div>
             <hr />
             <h3>Score: {score} / {questionNumber}</h3>
             <h3>Lesson Progress</h3>
             <div className="progress">
-                <div className="progress-bar bg-success" style={{width: `${questionNumber/5*100}%`}} role="progressbar"></div>
+                <div className="progress-bar bg-success" style={{width: `${questionNumber/10*100}%`}} role="progressbar"></div>
             </div>
+        </div>
+        <hr />
+        <div>
+            {answered && <Answer onClickHandler={proceedClick} answer={questions[pick]} correct={correct} />}
+        </div>
         </div>
     )
 
