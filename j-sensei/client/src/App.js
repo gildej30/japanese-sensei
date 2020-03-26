@@ -6,7 +6,8 @@ import Main from './views/Main';
 import Login from './views/Login';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from './views/Dashboard';
-import Lesson from './views/Lesson'; 
+import Lesson from './views/Lesson';
+import { UserData } from './data/UserData';
 
 
 function App() {
@@ -32,46 +33,48 @@ function App() {
     }
   }
 
-  const [userScores, setUserScores] = useState([
-    {
-      lessonName: "Hiragana 1",
-      highScore: 0,
-      lessonColor: "danger"
-  },
-  {
-      lessonName: "Hiragana 2",
-      highScore: 0,
-      lessonColor: "danger"
-  },
-  {
-      lessonName: "Hiragana 3",
-      highScore: 0,
-      lessonColor: "danger"
-  }
-  ])
+  const [userScores, setUserScores] = useState(UserData);
   
   const scoreUpdate = (lesson, score) => {
+    let lessonNumber = parseInt(lesson);
     let newColor = "";
-    let highScore = Math.max(score, userScores[lesson-1].highScore);
-    let lessonName = userScores[lesson-1].lessonName;
+    let highScore = Math.max(score, userScores[lesson].highScore);
+    let lessonName = userScores[lesson].lessonName;
+    let alphabet = userScores[lesson].alphabet;
+    let type = userScores[lesson].type;
   
-    if(highScore <= 2) {
-      newColor = "danger"
-    }
-    else if(highScore < 5) {
-      newColor = "warning"
+    if(type === "quiz") {
+      if(highScore <= 4) {
+        newColor = "danger"
+      }
+      else if(highScore < 10) {
+        newColor = "warning"
+      }
+      else {
+        newColor = "success"
+      }
     }
     else {
-      newColor = "success"
+      if(highScore <= 3) {
+        newColor = "danger"
+      }
+      else if(highScore < 8) {
+        newColor = "warning"
+      }
+      else {
+        newColor = "success"
+      }
     }
   
-    const newScore = {
+    let newScore = {
       lessonName: lessonName,
       highScore: highScore,
-      lessonColor: newColor
-    }
+      lessonColor: newColor,
+      alphabet: alphabet,
+      type: type
+    };
   
-    setUserScores([...userScores.slice(0, lesson-1), newScore, ...userScores.slice(lesson)])
+    setUserScores([...userScores.slice(0,lessonNumber), newScore, ...userScores.slice(lessonNumber+1)]);
   }
 
   return (
@@ -83,9 +86,8 @@ function App() {
         <hr />
         <Router>
           <Dashboard path='/' userScores={userScores}/>
-          <Lesson path='/lesson/:id' userScores={userScores} scoreUpdate={scoreUpdate}/>
+          <Lesson path='/lesson/:lesson' userScores={userScores} scoreUpdate={scoreUpdate}/>
       </Router>
-      
     </div>
   );
 }

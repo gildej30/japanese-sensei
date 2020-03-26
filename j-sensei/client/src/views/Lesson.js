@@ -1,19 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {navigate} from '@reach/router';
 import MultipleChoice from '../components/MultipleChoice';
 import MatchGame from '../components/MatchGame';
+import Axios from 'axios';
 
-const Lesson = ({id, scoreUpdate, userScores}) => {
+const Lesson = ({lesson, scoreUpdate, userScores}) => {
 
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
+    const [pick, setPick] = useState(0);
     const [questionType, setQuestionType] = useState(0);
+    const [dictionary, setDictionary] = useState([]);
+    const [loaded, setLoaded] = useState(false);
 
-    const dictionary = ["a", "e", "i", "o" ,"u"];
+    useEffect(() => {
+        Axios.get("http://localhost:8000/api/hiragana/dictionaries/" + lesson)
+            .then(res => {
+                let temp = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    temp.push(res.data[i].romanji);
+                }
+                setDictionary(temp)
+                setLoaded(true)
+            })
+            .catch(err => console.log(err))
+    }, [lesson])
 
     const incrementQuestion = () => {
         setQuestionNumber(questionNumber + 1);
-        setQuestionType(Math.round(Math.random(0,1)));
+        setQuestionType(userScores[lesson].type === "lesson" ? Math.round(Math.random(0,1)) : 0);
+        setPick(Math.floor(Math.random(0,dictionary.length)*dictionary.length));
     }
     
     const incrementScore = () => {
@@ -22,27 +38,31 @@ const Lesson = ({id, scoreUpdate, userScores}) => {
     
     const dashboardReturn = e => {
         e.preventDefault();
-        scoreUpdate(id, score);
+        scoreUpdate(lesson, score);
         navigate("/");
     }
 
     return (
         <div>
-            {questionNumber < 5 ?
-                questionType === 0 ? 
+            {questionNumber < 10 ?
+                questionType === 0 && loaded ?
                     <MultipleChoice dictionary={dictionary}
-                    lesson={userScores[id-1].lessonName}
+                    lessonName={userScores[lesson].lessonName}
                     questionNumber={questionNumber}
                     score={score}
                     incrementQuestion={incrementQuestion}
-                    incrementScore={incrementScore} />
-                    : 
+                    incrementScore={incrementScore} 
+                    alphabet={userScores[lesson].alphabet}
+                    type={userScores[lesson].type} 
+                    pick={pick} />
+                    : loaded &&
                     <MatchGame dictionary={dictionary}
-                    lesson={userScores[id-1].lessonName}
+                    lessonName={userScores[lesson].lessonName}
                     questionNumber={questionNumber}
                     score={score}
                     incrementQuestion={incrementQuestion}
-                    incrementScore={incrementScore} />
+                    incrementScore={incrementScore}
+                    alphabet={userScores[lesson].alphabet} />
                 :
                 <div className="col-5 mx-auto">
                     <h2>Final Score: {score}</h2>
