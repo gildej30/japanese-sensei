@@ -45,7 +45,7 @@ const Lesson = ({lesson, scoreUpdate, userScores}) => {
     return (
         <div>
             {questionNumber < 10 ?
-                questionType === 0 && loaded ? 
+                questionType === 0 && loaded ?
                     <MultipleChoice dictionary={dictionary}
                     lessonName={userScores[lesson].lessonName}
                     questionNumber={questionNumber}

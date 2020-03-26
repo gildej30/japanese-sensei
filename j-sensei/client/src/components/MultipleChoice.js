@@ -1,28 +1,34 @@
 import React, {useState} from 'react';
-import $ from 'jquery';
-import Popper from 'popper.js';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Answer from './Answer';
 
 const MultipleChoice = ({dictionary, lessonName, questionNumber, score, incrementQuestion, incrementScore, alphabet, type, pick}) => {
 
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-
-
     const[questions, setQuestions] = useState(dictionary);
     const[options, setOptions] = useState(dictionary);
+    const[answered, setAnswered] = useState(false);
+    const[correct, setCorrect] = useState(false);
 
     const onClickHandler = e => {
         e.preventDefault();
         e.target.blur();
         if (e.target.value === questions[pick]) {
+            setCorrect(true);
+        }
+        setAnswered(true);
+    }
+    
+    const proceedClick = e => {
+        e.preventDefault();
+        if (correct) {
             incrementScore();
         }
+        setCorrect(false);
+        setAnswered(false);
         incrementQuestion();
     }
 
     return (
+        <div>
         <div className="col-5 mx-auto">   
             <h1>{lessonName}</h1>
             {type==="lesson" && <img src={"/img/"+alphabet+"_"+questions[pick]+".png"} alt={alphabet} className="img-thumbnail" title={questions[pick]}/>}
@@ -38,6 +44,11 @@ const MultipleChoice = ({dictionary, lessonName, questionNumber, score, incremen
             <div className="progress">
                 <div className="progress-bar bg-success" style={{width: `${questionNumber/10*100}%`}} role="progressbar"></div>
             </div>
+        </div>
+        <hr />
+        <div>
+            {answered && <Answer onClickHandler={proceedClick} answer={questions[pick]} correct={correct} />}
+        </div>
         </div>
     )
 
