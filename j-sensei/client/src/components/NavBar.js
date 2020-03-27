@@ -10,11 +10,11 @@ const NavBar = ({ style, username }) => {
             <Link className="navbar-brand mr-auto" to="/dashboard">J-Sensei!</Link>
             <Link className="navbar-brand mr-auto" to="/dashboard">Learn</Link>
             <div className="dropdown show">
-                <a className="navbar-brand dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="navbar-brand dropdown-toggle" href="/dashboard" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Welcome, {username}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <Link className="dropdown-item" to="#">Account pofile</Link>
+                    <Link className="dropdown-item" to="#">Account profile</Link>
                     <Logout />
                 </div>
             </div>

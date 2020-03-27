@@ -5,7 +5,7 @@ const UserData = [
     lessonName: "Hiragana 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson",
     level: 0
   },
@@ -13,7 +13,7 @@ const UserData = [
     lessonName: "Hiragana 2",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson",
     level: 1
   },
@@ -21,7 +21,7 @@ const UserData = [
     lessonName: "Hiragana Quiz 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "quiz",
     level: 2
   },
@@ -29,7 +29,7 @@ const UserData = [
     lessonName: "Hiragana 3",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson",
     level: 3
   },
@@ -37,7 +37,7 @@ const UserData = [
     lessonName: "Hiragana 4",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson",
     level: 4
   },
@@ -45,7 +45,7 @@ const UserData = [
     lessonName: "Hiragana Quiz 2",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "quiz",
     level: 5
 },
@@ -54,14 +54,14 @@ const UserData = [
     highScore: 0,
     lessonColor: "danger",
     type: "lesson",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     level: 6
   },
   {
     lessonName: "Hiragana 6",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson",
     level: 7
   },
@@ -69,7 +69,7 @@ const UserData = [
     lessonName: "Hiragana Quiz 3",
     highScore: 0,
     lessonColor: "success",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "quiz",
     level: 8
   },
@@ -77,7 +77,7 @@ const UserData = [
     lessonName: "Katakana 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Katakana",
+    alphabet: "katakana",
     type: "lesson",
     level: 9
   },
@@ -85,7 +85,7 @@ const UserData = [
     lessonName: "Katakana 2",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Katakana",
+    alphabet: "katakana",
     type: "lesson",
     level: 10
   },
@@ -93,7 +93,7 @@ const UserData = [
     lessonName: "Katakana Quiz 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Katakana",
+    alphabet: "katakana",
     type: "quiz",
     level: 11
   },

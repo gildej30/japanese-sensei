@@ -21,17 +21,17 @@ const Lesson = ({lesson, scoreUpdate, userScores, style}) => {
             .then(res => {
                 let temp = [];
                 for (let i = 0; i < res.data.length; i++) {
-                    temp.push(res.data[i].romanji);
+                    temp.push(res.data[i]);
                 }
                 setDictionary(temp)
                 setLoaded(true)
             })
             .catch(err => console.log(err))
-    }, [lesson])
+    }, [])
 
     const incrementQuestion = () => {
         setQuestionNumber(questionNumber + 1);
-        setQuestionType(userScores[lesson].type === "lesson" ? Math.round(Math.random(0,1)) : 0);
+        setQuestionType(userScores[lesson].type === "lesson" ? Math.floor(Math.random()*5) : 0);
         setPick(Math.floor(Math.random(0,dictionary.length)*dictionary.length));
     }
     
@@ -49,7 +49,7 @@ const Lesson = ({lesson, scoreUpdate, userScores, style}) => {
         <div>
             <NavBar username={context.val} style={style}/>
             {questionNumber < 10 ?
-                questionType === 0 && loaded ?
+                questionType <= 3 && loaded ?
                     <MultipleChoice dictionary={dictionary}
                     lessonName={userScores[lesson].lessonName}
                     questionNumber={questionNumber}
@@ -58,7 +58,8 @@ const Lesson = ({lesson, scoreUpdate, userScores, style}) => {
                     incrementScore={incrementScore} 
                     alphabet={userScores[lesson].alphabet}
                     type={userScores[lesson].type} 
-                    pick={pick} />
+                    pick={pick}
+                    reverse={questionType <= 1 ? false : true} />
                     : loaded &&
                     <MatchGame dictionary={dictionary}
                     lessonName={userScores[lesson].lessonName}

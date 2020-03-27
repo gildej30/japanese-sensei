@@ -6,6 +6,7 @@ import MyContext from '../contexts/MyContext';
 import Audio from '../components/Audio';
 
 const Dashboard = ({userScores, style, h}) => {
+
     const [hiragana, setHiragana] = useState([]);
     const context = useContext(MyContext);
     const [isAuthorized, setIsAuthorized] = useState(false);
@@ -40,13 +41,12 @@ const Dashboard = ({userScores, style, h}) => {
                         ${i>0 && user && userScores[i].level > user.progress && "disabled"}`}>{lesson.lessonName}</Link>
                 )}
             </div>
-
+{/* 
             {hiragana.map((h, idx) => {
                 return <Audio key={idx} label={h} />
-            })} 
+            })}  */}
         </div>
     )
 }
-
 
 export default Dashboard;
