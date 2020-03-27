@@ -6,42 +6,48 @@ const UserData = [
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Hiragana",
-    type: "lesson"
+    type: "lesson",
+    level: 0
   },
   {
     lessonName: "Hiragana 2",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Hiragana",
-    type: "lesson"
+    type: "lesson",
+    level: 1
   },
   {
     lessonName: "Hiragana Quiz 1",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Hiragana",
-    type: "quiz"
+    type: "quiz",
+    level: 2
   },
   {
     lessonName: "Hiragana 3",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Hiragana",
-    type: "lesson"
+    type: "lesson",
+    level: 3
   },
   {
     lessonName: "Hiragana 4",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Hiragana",
-    type: "lesson"
+    type: "lesson",
+    level: 4
   },
   {
     lessonName: "Hiragana Quiz 2",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Hiragana",
-    type: "quiz"
+    type: "quiz",
+    level: 5
 },
 {
     lessonName: "Hiragana 5",

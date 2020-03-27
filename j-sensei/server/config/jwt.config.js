@@ -6,7 +6,7 @@ module.exports.authenticate = (req, res, next) => {
         if (err) {
             res.status(401).json({ verified: false });
         } else {
-            req.session.user = { nickname: payload.nickname };
+            req.session.user = { id: payload._id, nickname: payload.nickname };
             next();
         }
     });

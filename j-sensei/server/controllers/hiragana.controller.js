@@ -4,7 +4,7 @@ const { Hiragana } = require('../models/hiragana.model');
 module.exports = {
     getAll: (req, res) => {
         Hiragana.find()
-            .then(hiragana => res.json({hiragana: hiragana, nickname: req.session.user.nickname}))
+            .then(hiragana => res.json({hiragana: hiragana, nickname: req.session.user.nickname, id: req.session.user.id}))
             .catch(err => res.status(400).json(err))
     },
     getOne: (req, res) => {
@@ -38,7 +38,7 @@ module.exports = {
             .catch(err => res.status(400).json(err))
     },
     update: (req, res) => {
-        Hiragana.findByIdAndUpdate(req.params.id)
+        Hiragana.findByIdAndUpdate({_id:req.params.id}, req.body, {runValidators:true})
             .then(hiragana => res.json(hiragana))
             .catch(err => res.status(400).json(err))
     },
