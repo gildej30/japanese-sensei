@@ -1,17 +1,20 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { Router } from '@reach/router';
+import { Router, navigate } from '@reach/router';
 import Register from './views/Register';
 import Login from './views/Login';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from './views/Dashboard';
 import Lesson from './views/Lesson';
 import MyContext from './contexts/MyContext';
-import { UserData } from './data/UserData';
+import Axios from 'axios';
 
 
 function App() {
+
   const [val, setVal] = useState("");
+  const [currentProgress, setCurrentProgress] = useState(0);
+
   const style = {
     card: {
       borderRadius: '10px',
@@ -32,65 +35,25 @@ function App() {
       margin: '0px',
       padding: '0px'
     },
-    navbar:{
+    navbar: {
       paddingLeft: '20%',
       paddingRight: '20%'
     }
   }
-  const [userScores, setUserScores] = useState(UserData);
-  
-  const scoreUpdate = (lesson, score) => {
-    let lessonNumber = parseInt(lesson);
-    let newColor = "";
-    let highScore = Math.max(score, userScores[lesson].highScore);
-    let lessonName = userScores[lesson].lessonName;
-    let alphabet = userScores[lesson].alphabet;
-    let type = userScores[lesson].type;
-  
-    if(type === "quiz") {
-      if(highScore <= 4) {
-        newColor = "danger"
-      }
-      else if(highScore < 10) {
-        newColor = "warning"
-      }
-      else {
-        newColor = "success"
-      }
-    }
-    else {
-      if(highScore <= 3) {
-        newColor = "danger"
-      }
-      else if(highScore < 8) {
-        newColor = "warning"
-      }
-      else {
-        newColor = "success"
-      }
-    }
-  
-    let newScore = {
-      lessonName: lessonName,
-      highScore: highScore,
-      lessonColor: newColor,
-      alphabet: alphabet,
-      type: type
-    };
-  
-    setUserScores([...userScores.slice(0,lessonNumber), newScore, ...userScores.slice(lessonNumber+1)]);
-  }
 
-  const [isMounted, setIsMounted] = useState(false);
+  const scoreUpdate = (lesson) => {
+    console.log("yo");
+    setCurrentProgress(parseInt(lesson)+1);
+  }
 
   return (
     <div className="App">
-      <MyContext.Provider value={{val, setVal}}>
+      <MyContext.Provider value={{ val, setVal }}>
         <Router>
           <Login style={style} path="/" />
           <Register style={style} path="/register" />
-          <Dashboard style={style} path='/dashboard' userScores={userScores} />
-          <Lesson style={style} path='/lesson/:lesson' userScores={userScores} scoreUpdate={scoreUpdate}/>
+          <Dashboard style={style} path='/dashboard' currentProgress={currentProgress}/>
+          <Lesson style={style} path='/lesson/:lesson' scoreUpdate={scoreUpdate} currentProgress={currentProgress}/>
         </Router>
       </MyContext.Provider>
     </div>

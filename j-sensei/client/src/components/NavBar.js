@@ -6,7 +6,7 @@ import MyContext from '../contexts/MyContext';
 const NavBar = ({ style, username }) => {
     const context = useContext(MyContext);
     return (
-        <nav style={style.navbar} className="navbar navbar-expand-lg navbar-light">
+        <nav style={style.navbar} className="navbar navbar-expand-lg navbar-light bg-light">
             <Link className="navbar-brand mr-auto" to="/dashboard">J-Sensei!</Link>
             <Link className="navbar-brand mr-auto" to="/dashboard">Learn</Link>
             <div className="dropdown show">
