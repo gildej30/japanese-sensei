@@ -57,13 +57,13 @@ const MatchGame = ({dictionary, lessonName, questionNumber, score, incrementQues
             <div className="row justify-content-center">
                 <div className="d-inline-flex flex-column justify-content-between col-2">
                     {questions.map((question, i) => 
-                    <input key={i} type="button" className="btn btn-outline-success my-2" name={question.romanji} 
+                    <input key={i} type="button" className="btn btn-lg btn-outline-success my-2" name={question.romanji} 
                         value={alphabet === "hiragana" ? question.hiragana : question.katakana} onClick={(e) => onClickHandler(e, i, "question")} />
                     )}
                 </div>
                 <div className="d-inline-flex flex-column justify-content-between col-2">
                     {options.map((option, i) => 
-                    <input key={i} type="button" className="btn btn-outline-success my-2" name={option.romanji} value={option.romanji} onClick={(e) => onClickHandler(e, i, "answer")} />)}
+                    <input key={i} type="button" className="btn btn-lg btn-outline-success my-2" name={option.romanji} value={option.romanji} onClick={(e) => onClickHandler(e, i, "answer")} />)}
                 </div>
             </div>
             <hr />

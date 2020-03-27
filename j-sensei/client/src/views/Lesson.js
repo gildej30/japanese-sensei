@@ -1,12 +1,13 @@
-import React, {useState, useContext, useEffect} from 'react';
-import {navigate} from '@reach/router';
+import React, { useState, useContext, useEffect } from 'react';
+import { navigate } from '@reach/router';
 import MultipleChoice from '../components/MultipleChoice';
 import NavBar from '../components/NavBar';
 import MatchGame from '../components/MatchGame';
+import { LessonData } from '../data/LessonData';
 import MyContext from '../contexts/MyContext';
 import Axios from 'axios';
 
-const Lesson = ({lesson, scoreUpdate, userScores, style}) => {
+const Lesson = ({ lesson, scoreUpdate, style, currentProgress }) => {
 
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
@@ -27,47 +28,51 @@ const Lesson = ({lesson, scoreUpdate, userScores, style}) => {
                 setLoaded(true)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [lesson])
 
     const incrementQuestion = () => {
         setQuestionNumber(questionNumber + 1);
-        setQuestionType(userScores[lesson].type === "lesson" ? Math.floor(Math.random()*5) : 0);
-        setPick(Math.floor(Math.random(0,dictionary.length)*dictionary.length));
+        setQuestionType(LessonData[lesson].type === "lesson" ? Math.floor(Math.random() * 5) : 0);
+        setPick(Math.floor(Math.random(0, dictionary.length) * dictionary.length));
     }
-    
+
     const incrementScore = () => {
         setScore(score + 1);
     }
-    
+
     const dashboardReturn = e => {
         e.preventDefault();
-        scoreUpdate(lesson, score);
+        console.log(score);
+        console.log(LessonData[lesson].type);
+        if (((LessonData[lesson].type === "lesson" && score >= 9) || (LessonData[lesson].type === "quiz" && score === 10)) && parseInt(lesson) === currentProgress) {
+            scoreUpdate(lesson);
+        }
         navigate("/dashboard");
     }
 
     return (
         <div>
-            <NavBar username={context.val} style={style}/>
+            <NavBar username={context.val} style={style} />
             {questionNumber < 10 ?
                 questionType <= 3 && loaded ?
                     <MultipleChoice dictionary={dictionary}
-                    lessonName={userScores[lesson].lessonName}
-                    questionNumber={questionNumber}
-                    score={score}
-                    incrementQuestion={incrementQuestion}
-                    incrementScore={incrementScore} 
-                    alphabet={userScores[lesson].alphabet}
-                    type={userScores[lesson].type} 
-                    pick={pick}
-                    reverse={questionType <= 1 ? false : true} />
+                        lessonName={LessonData[lesson].lessonName}
+                        questionNumber={questionNumber}
+                        score={score}
+                        incrementQuestion={incrementQuestion}
+                        incrementScore={incrementScore}
+                        alphabet={LessonData[lesson].alphabet}
+                        type={LessonData[lesson].type}
+                        pick={pick}
+                        reverse={questionType <= 1 ? false : true} />
                     : loaded &&
                     <MatchGame dictionary={dictionary}
-                    lessonName={userScores[lesson].lessonName}
-                    questionNumber={questionNumber}
-                    score={score}
-                    incrementQuestion={incrementQuestion}
-                    incrementScore={incrementScore}
-                    alphabet={userScores[lesson].alphabet} />
+                        lessonName={LessonData[lesson].lessonName}
+                        questionNumber={questionNumber}
+                        score={score}
+                        incrementQuestion={incrementQuestion}
+                        incrementScore={incrementScore}
+                        alphabet={LessonData[lesson].alphabet} />
                 :
                 <div className="col-5 mx-auto">
                     <h2>Final Score: {score}</h2>

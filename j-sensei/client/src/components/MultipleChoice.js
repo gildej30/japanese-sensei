@@ -64,7 +64,7 @@ const MultipleChoice = ({dictionary, lessonName, questionNumber, score, incremen
                 <p className="my-2">Which syllable does this character represent?</p>
                 <div className="d-flex flex-row flex-wrap p-2 justify-content-between col-12 mx-auto">
                     {options.map((option, i) => 
-                    <button key={i} type="button" className="btn btn-outline-success col-2 mx-2 my-1" value={option.romanji} onClick={onClickHandler}>{option.romanji}</button>)}
+                    <button key={i} type="button" className="btn btn-lg btn-outline-success col-2 mx-2 my-1" value={option.romanji} onClick={onClickHandler}>{option.romanji}</button>)}
                 </div>
                 <hr />
                 <h3>Score: {score} / {questionNumber}</h3>
@@ -79,7 +79,7 @@ const MultipleChoice = ({dictionary, lessonName, questionNumber, score, incremen
                 <p className="my-2">Which character represents this syllable?</p>
                 <div className="d-flex flex-row flex-wrap p-2 justify-content-between col-12 mx-auto">
                     {options.map((option, i) =>
-                    <button key={i} type="button" className="btn btn-outline-success col-2 mx-2 my-1" value={alphabet === "hiragana" ? option.hiragana : option.katakana} 
+                    <button key={i} type="button" className="btn btn-lg btn-outline-success col-2 mx-2 my-1" value={alphabet === "hiragana" ? option.hiragana : option.katakana} 
                         onClick={onClickHandler}>{alphabet === "hiragana" ? option.hiragana : option.katakana}</button>)}
                 </div>
                 <hr />
