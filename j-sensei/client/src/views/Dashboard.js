@@ -26,7 +26,7 @@ const Dashboard = ({userScores, style, h}) => {
                 }
             })
             .catch(err => navigate("/"));
-    }, [isAuthorized]);
+    }, [userId]);
     
     return (
         isAuthorized && 
