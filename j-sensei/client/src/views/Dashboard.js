@@ -6,7 +6,7 @@ import Audio from '../components/Audio';
 import { LessonData } from '../data/LessonData';
 import Axios from 'axios';
 
-const Dashboard = ({ style, currentProgress }) => {
+const Dashboard = ({ style, currentProgress, updateProgress }) => {
 
     const context = useContext(MyContext);
     const [hiragana, setHiragana] = useState([]);
@@ -23,7 +23,10 @@ const Dashboard = ({ style, currentProgress }) => {
                 setIsAuthorized(true);
                 if (userId !== "") {
                     Axios.get(`http://localhost:8000/api/user/${userId}`)
-                        .then(res => setUser(res.data))
+                        .then(res => {
+                            setUser(res.data);
+                            updateProgress(res.data.progress);
+                        })
                         .catch(err => console.log(err))
                 }
             })

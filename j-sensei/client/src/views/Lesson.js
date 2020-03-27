@@ -44,6 +44,7 @@ const Lesson = ({ lesson, scoreUpdate, style, currentProgress }) => {
         e.preventDefault();
         console.log(score);
         console.log(LessonData[lesson].type);
+        console.log(currentProgress);
         if (((LessonData[lesson].type === "lesson" && score >= 9) || (LessonData[lesson].type === "quiz" && score === 10)) && parseInt(lesson) === currentProgress) {
             scoreUpdate(lesson);
         }

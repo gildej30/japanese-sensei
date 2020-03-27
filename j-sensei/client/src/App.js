@@ -45,6 +45,12 @@ function App() {
     console.log("yo");
     setCurrentProgress(parseInt(lesson)+1);
   }
+  
+  const updateProgress = (progress) => {
+    if (progress >= currentProgress) {
+      setCurrentProgress(progress);
+    }
+  }
 
   return (
     <div className="App">
@@ -52,7 +58,7 @@ function App() {
         <Router>
           <Login style={style} path="/" />
           <Register style={style} path="/register" />
-          <Dashboard style={style} path='/dashboard' currentProgress={currentProgress}/>
+          <Dashboard style={style} path='/dashboard' currentProgress={currentProgress} updateProgress={updateProgress}/>
           <Lesson style={style} path='/lesson/:lesson' scoreUpdate={scoreUpdate} currentProgress={currentProgress}/>
         </Router>
       </MyContext.Provider>
