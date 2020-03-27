@@ -42,7 +42,6 @@ function App() {
   }
 
   const scoreUpdate = (lesson) => {
-    console.log("yo");
     setCurrentProgress(parseInt(lesson)+1);
   }
   
