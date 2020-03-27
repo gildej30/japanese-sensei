@@ -3,6 +3,16 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 
 module.exports = {
+    getOne: (req, res) => {
+        User.findById(req.params.id)
+            .then(user => res.json(user))
+            .catch(err => res.status(400).json(err))
+    },
+    update: (req, res) => {
+        User.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators:true})
+            .then(user => res.json(user))
+            .catch(err => res.status(400).json(err))
+    },
     login: (req, res) => {
         User.findOne({ email: req.body.email })
             .then(user => {
