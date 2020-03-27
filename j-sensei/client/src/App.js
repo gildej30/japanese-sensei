@@ -81,6 +81,8 @@ function App() {
     setUserScores([...userScores.slice(0,lessonNumber), newScore, ...userScores.slice(lessonNumber+1)]);
   }
 
+  const [isMounted, setIsMounted] = useState(false);
+
   return (
     <div className="App">
       <MyContext.Provider value={{val, setVal}}>

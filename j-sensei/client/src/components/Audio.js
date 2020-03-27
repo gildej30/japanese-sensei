@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Howl } from 'howler';
 
 const Audio = ({ label }) => {
 
-    const audioClips = [
+    const [audioClips, setAudioClips] = useState([
         {
         sound:[`/audio/basic_sounds/${label.romanji}.mp3`], 
             label:`${label.hiragana}`
         }
-    ];
+    ]) 
 
     const soundPlay = (src) => {
         const sound = new Howl ({
