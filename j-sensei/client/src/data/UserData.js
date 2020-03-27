@@ -55,41 +55,47 @@ const UserData = [
     lessonColor: "danger",
     type: "lesson",
     alphabet: "Hiragana",
+    level: 6
   },
   {
     lessonName: "Hiragana 6",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Hiragana",
-    type: "lesson"
+    type: "lesson",
+    level: 7
   },
   {
     lessonName: "Hiragana Quiz 3",
     highScore: 0,
     lessonColor: "success",
     alphabet: "Hiragana",
-    type: "quiz"
+    type: "quiz",
+    level: 8
   },
   {
     lessonName: "Katakana 1",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Katakana",
-    type: "lesson"
+    type: "lesson",
+    level: 9
   },
   {
     lessonName: "Katakana 2",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Katakana",
-    type: "lesson"
+    type: "lesson",
+    level: 10
   },
   {
     lessonName: "Katakana Quiz 1",
     highScore: 0,
     lessonColor: "danger",
     alphabet: "Katakana",
-    type: "quiz"
+    type: "quiz",
+    level: 11
   },
 ];
 
