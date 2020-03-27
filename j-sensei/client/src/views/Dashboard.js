@@ -19,14 +19,14 @@ const Dashboard = ({userScores, style, h}) => {
                 context.setVal(res.data.nickname);
                 setUserId(res.data.id);
                 setIsAuthorized(true);
-                if(userId != ""){
+                if(userId !== ""){
                     Axios.get(`http://localhost:8000/api/user/${userId}`)
                         .then(res => setUser(res.data))
                         .catch(err => console.log(err))
                 }
             })
-            .catch(err => navigate("/"));
-    }, [isAuthorized]);
+            .catch(err => err.response.status === 401 ? navigate("/") : console.log(err));
+    }, [userId]);
     
     return (
         isAuthorized && 
