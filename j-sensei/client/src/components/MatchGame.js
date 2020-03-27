@@ -53,17 +53,17 @@ const MatchGame = ({dictionary, lessonName, questionNumber, score, incrementQues
     return (
         <div className="col-5 mx-auto">   
             <h1>{lessonName}</h1>
-            <p className="my-2">Match the hiragana with the vowel sounds:</p>
+            <p className="my-2">{`Match the ${alphabet} with the romanji:`}</p>
             <div className="row justify-content-center">
                 <div className="d-inline-flex flex-column justify-content-between col-2">
                     {questions.map((question, i) => 
-                    <input key={i} type="button" className="btn btn-outline-success my-2" name={question} onClick={(e) => onClickHandler(e, i, "question")}
-                        style={{backgroundImage: "url('/img/"+alphabet+"_"+question+".png')", backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}/>
+                    <input key={i} type="button" className="btn btn-outline-success my-2" name={question.romanji} 
+                        value={alphabet === "hiragana" ? question.hiragana : question.katakana} onClick={(e) => onClickHandler(e, i, "question")} />
                     )}
                 </div>
                 <div className="d-inline-flex flex-column justify-content-between col-2">
                     {options.map((option, i) => 
-                    <input key={i} type="button" className="btn btn-outline-success my-2" name={option} value={option} onClick={(e) => onClickHandler(e, i, "answer")} />)}
+                    <input key={i} type="button" className="btn btn-outline-success my-2" name={option.romanji} value={option.romanji} onClick={(e) => onClickHandler(e, i, "answer")} />)}
                 </div>
             </div>
             <hr />

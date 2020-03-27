@@ -5,42 +5,42 @@ const UserData = [
     lessonName: "Hiragana 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson"
   },
   {
     lessonName: "Hiragana 2",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson"
   },
   {
     lessonName: "Hiragana Quiz 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "quiz"
   },
   {
     lessonName: "Hiragana 3",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson"
   },
   {
     lessonName: "Hiragana 4",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson"
   },
   {
     lessonName: "Hiragana Quiz 2",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "quiz"
 },
 {
@@ -48,41 +48,41 @@ const UserData = [
     highScore: 0,
     lessonColor: "danger",
     type: "lesson",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
   },
   {
     lessonName: "Hiragana 6",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "lesson"
   },
   {
     lessonName: "Hiragana Quiz 3",
     highScore: 0,
     lessonColor: "success",
-    alphabet: "Hiragana",
+    alphabet: "hiragana",
     type: "quiz"
   },
   {
     lessonName: "Katakana 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Katakana",
+    alphabet: "katakana",
     type: "lesson"
   },
   {
     lessonName: "Katakana 2",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Katakana",
+    alphabet: "katakana",
     type: "lesson"
   },
   {
     lessonName: "Katakana Quiz 1",
     highScore: 0,
     lessonColor: "danger",
-    alphabet: "Katakana",
+    alphabet: "katakana",
     type: "quiz"
   },
 ];

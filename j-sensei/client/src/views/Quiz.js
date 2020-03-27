@@ -23,7 +23,7 @@ const Quiz = ({id, scoreUpdate, userScores}) => {
     const dashboardReturn = e => {
         e.preventDefault();
         scoreUpdate(id, score);
-        navigate("/");
+        navigate("/dashboard");
     }
 
     return (
