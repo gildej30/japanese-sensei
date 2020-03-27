@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Answer from './Answer';
+import Audio from './Audio';
 
 const MultipleChoice = ({dictionary, lessonName, questionNumber, score, incrementQuestion, incrementScore, alphabet, type, pick, reverse}) => {
 
@@ -61,6 +62,7 @@ const MultipleChoice = ({dictionary, lessonName, questionNumber, score, incremen
                     className="img-thumbnail" title={questions[pick].romanji}/>}
                 {type==="quiz" && <img src={"/img/"+alphabet+"_"+questions[pick].romanji+".png"} alt={alphabet} className="img-thumbnail"/>} */}
                 <h1 className="display-3" title={type === "lesson" ? questions[pick].romanji : ""}>{alphabet === "hiragana" ? questions[pick].hiragana : questions[pick].katakana}</h1>
+                {type === "lesson" && <Audio label={questions[pick]} />}
                 <p className="my-2">Which syllable does this character represent?</p>
                 <div className="d-flex flex-row flex-wrap p-2 justify-content-between col-12 mx-auto">
                     {options.map((option, i) => 
